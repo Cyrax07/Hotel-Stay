@@ -119,6 +119,36 @@
             </div>
         </div>
       </form>
+         <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "users";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$dbname);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+        if(isset($_POST['submit'])){
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $room = $_POST['room'];
+            $arrival = $_POST['arrival'];
+            $departure = $_POST['departure'];
+            $adult = $_POST['adult'];
+            $children = $_POST['children'];
+  
+            $sql= "INSERT INTO `details`( `Name`, `Email`, `Phone`, `Room`, `Arrival`, `Departure`, `Adult`, `Children`) VALUES ('$name','$email','$phone','$room','$arrival','$departure','$adult','$children')";
+
+            if ($conn->query($sql)) {
+              } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+              }
+    $conn->close();
+        }
+        ?>
     </div>
     <div class="bg-image"
       style="background-image:url('https://wallpapers.com/images/featured/mvehfqz6w2ges2dj.jpg');width: 100%; background-repeat: no-repeat; background-size: cover;margin-top: 25px;padding-bottom: 75px;">
